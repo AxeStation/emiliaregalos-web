@@ -9,8 +9,18 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        cream: '#f4f0e9',
+        'beige-light': '#efe5da',
+        beige: '#bfb4a2',
+        gold: '#ceb89f',
+        'gold-strong': '#C8A96E',
+        charcoal: '#606060',
+        black: '#2D2D2D',
+        wine: '#8B2252',
+      },
+      fontFamily: {
+        display: ['var(--font-display)', 'Cormorant Garamond', 'serif'],
+        body: ['var(--font-body)', 'Poppins', 'sans-serif'],
       },
     },
   },
