@@ -50,7 +50,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
           <div>
             {images[0] ? (
               <div className="relative aspect-[3/4] rounded-sm overflow-hidden mb-3">
-                <Image src={optimizeImage(images[0], 900)} alt={product.name} fill className="object-contain bg-beige-light" priority sizes="(max-width:768px) 100vw, 50vw" />
+                <Image src={optimizeImage(images[0], 900)} alt={product.name} fill className="object-cover object-[center_15%]" priority sizes="(max-width:768px) 100vw, 50vw" />
               </div>
             ) : null}
             {images.length > 1 ? (

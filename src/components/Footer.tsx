@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div className="md:col-span-1">
-            <Image src={LOGO_WHITE} alt="Emilia" width={200} height={80} className="w-[160px] h-auto opacity-90 mb-4" />
+            <Image src={LOGO_WHITE} alt="Emilia" width={240} height={96} className="w-[180px] h-auto opacity-90 mb-4" />
             <p className="text-xs text-cream/50 leading-relaxed">
               Regalos personalizados hechos a mano con amor en Puebla, México.
             </p>

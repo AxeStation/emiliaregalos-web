@@ -21,7 +21,7 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-cream/90 border-b border-gold/20">
       <div className="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between">
         <Link href="/" className="shrink-0" onClick={function () { setOpen(false) }}>
-          <Image src={LOGO} alt="Emilia" width={200} height={80} className="w-[100px] md:w-[140px] h-auto" priority />
+          <Image src={LOGO} alt="Emilia" width={240} height={96} className="w-[180px] h-auto" priority />
         </Link>
 
         {/* Desktop links */}
