@@ -17,6 +17,8 @@ var CAT_IMGS: Record<string, string> = {
   'Bebés': WEB + 'caja-beb.jpg',
   'Empresarial': WEB + 'caja-madera-1.jpg',
   'Aniversarios': WEB + 'tabla-vino.jpg',
+  'Eventos Sociales': WEB + 'caja-frazada.jpg',
+  'Detalles': WEB + 'bandeja-vela.jpg',
 }
 
 var INSTA_IMGS = [
@@ -43,7 +45,7 @@ export default async function HomePage() {
   var withImages = products.filter(function (p) { return p.images && p.images.length > 0 })
   var featured = withImages.slice(0, 6)
 
-  var CATS = ['Para Ella', 'Para Él', 'Padrinos', 'Bebés', 'Empresarial', 'Aniversarios']
+  var CATS = ['Para Ella', 'Para Él', 'Padrinos', 'Bebés', 'Aniversarios', 'Eventos Sociales', 'Empresarial', 'Detalles']
 
   return (
     <>
@@ -72,7 +74,7 @@ export default async function HomePage() {
           <p className="text-center text-charcoal text-sm mb-12 max-w-lg mx-auto">
             Regalos que cuentan historias. Encuentra el detalle perfecto para quien más quieres.
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {CATS.map(function (cat) {
               var img = CAT_IMGS[cat] || ''
               return (
