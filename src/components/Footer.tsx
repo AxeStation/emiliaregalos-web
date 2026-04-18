@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-var LOGO = 'https://llpejrdkipyysmxydsnm.supabase.co/storage/v1/object/public/products/emilia/emilia_logo_optimized.png'
+var LOGO_WHITE = 'https://llpejrdkipyysmxydsnm.supabase.co/storage/v1/object/public/products/emilia/emilia-logo-blanco.png'
 
 export default function Footer() {
   return (
@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div className="md:col-span-1">
-            <Image src={LOGO} alt="Emilia" width={140} height={56} className="h-12 w-auto brightness-200 invert opacity-80 mb-4" />
+            <Image src={LOGO_WHITE} alt="Emilia" width={200} height={80} className="w-[160px] h-auto opacity-90 mb-4" />
             <p className="text-xs text-cream/50 leading-relaxed">
               Regalos personalizados hechos a mano con amor en Puebla, México.
             </p>
