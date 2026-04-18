@@ -19,7 +19,7 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-cream/90 border-b border-gold/20">
-      <div className="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-5 h-16 flex items-center justify-center md:justify-between relative">
         <Link href="/" className="shrink-0" onClick={function () { setOpen(false) }}>
           <Image src={LOGO} alt="Emilia" width={240} height={96} className="w-[180px] h-auto" priority />
         </Link>
@@ -47,7 +47,7 @@ export default function Navbar() {
         {/* Mobile hamburger */}
         <button
           onClick={function () { setOpen(!open) }}
-          className="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5"
+          className="md:hidden absolute right-5 w-10 h-10 flex flex-col items-center justify-center gap-1.5"
           aria-label="Menú"
         >
           <span className={'block w-6 h-0.5 bg-charcoal transition-all ' + (open ? 'rotate-45 translate-y-2' : '')} />
