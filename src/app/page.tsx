@@ -1,10 +1,31 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
-import { type Product, optimizeImage } from '@/lib/types'
+import { type Product } from '@/lib/types'
 import ProductCard from '@/components/ProductCard'
 
 var LOGO_WHITE = 'https://llpejrdkipyysmxydsnm.supabase.co/storage/v1/object/public/products/emilia/emilia-logo-ivory.png'
+var WEB = 'https://llpejrdkipyysmxydsnm.supabase.co/storage/v1/object/public/products/emilia/web/'
+
+var HERO_IMG = WEB + 'tabla-amor.jpg'
+var PERSONALIZE_IMG = WEB + 'tabla-carnes-frias.jpg'
+
+var CAT_IMGS: Record<string, string> = {
+  'Para Ella': WEB + 'caja-recuerdo.jpg',
+  'Para Él': WEB + 'tabla-tequila.jpg',
+  'Padrinos': WEB + 'caja-vino-mini.jpg',
+  'Bebés': WEB + 'caja-beb.jpg',
+  'Empresarial': WEB + 'caja-madera-1.jpg',
+  'Aniversarios': WEB + 'tabla-vino.jpg',
+}
+
+var INSTA_IMGS = [
+  WEB + 'canasta-spa.jpg',
+  WEB + 'sin-nombre-caja-rosa.jpg',
+  WEB + 'caja-caf.jpg',
+  WEB + 'tabla-pampas.jpg',
+  WEB + 'orquidea.jpg',
+]
 
 async function getProducts(): Promise<Product[]> {
   var { data } = await supabase
@@ -21,7 +42,6 @@ export default async function HomePage() {
   var products = await getProducts()
   var withImages = products.filter(function (p) { return p.images && p.images.length > 0 })
   var featured = withImages.slice(0, 6)
-  var heroUrl = withImages[0]?.images?.[0] || ''
 
   var CATS = ['Para Ella', 'Para Él', 'Padrinos', 'Bebés', 'Empresarial', 'Aniversarios']
 
@@ -29,9 +49,7 @@ export default async function HomePage() {
     <>
       {/* ─── Hero ─── */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        {heroUrl ? (
-          <Image src={optimizeImage(heroUrl, 1400)} alt="Emilia" fill className="object-cover" priority />
-        ) : null}
+        <Image src={HERO_IMG} alt="Emilia — detalles memorables" fill className="object-cover" priority />
         <div className="absolute inset-0 bg-black/40" />
         <div className="relative z-10 text-center px-5">
           <Image src={LOGO_WHITE} alt="Emilia" width={320} height={130} className="mx-auto mb-10 h-20 md:h-28 w-auto brightness-[2]" priority />
@@ -56,11 +74,10 @@ export default async function HomePage() {
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
             {CATS.map(function (cat) {
-              var p = withImages.find(function (pr) { return pr.category === cat })
-              var img = p?.images?.[0] || ''
+              var img = CAT_IMGS[cat] || ''
               return (
                 <Link key={cat} href={'/catalogo?cat=' + encodeURIComponent(cat)} className="group relative aspect-[4/3] overflow-hidden rounded-sm">
-                  {img ? <Image src={optimizeImage(img, 600)} alt={cat} fill sizes="(max-width:640px) 50vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-110" /> : <div className="w-full h-full bg-beige-light" />}
+                  {img ? <Image src={img} alt={cat} fill sizes="(max-width:640px) 50vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-110" /> : <div className="w-full h-full bg-beige-light" />}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
                   <div className="absolute bottom-4 left-4">
                     <h3 className="font-display text-xl md:text-2xl text-white">{cat}</h3>
@@ -112,9 +129,7 @@ export default async function HomePage() {
       <section id="personaliza" className="py-20 px-5 bg-cream">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="relative aspect-square rounded-sm overflow-hidden">
-            {withImages.find(function (p) { return p.name.toLowerCase().includes('tabla') })?.images?.[0] ? (
-              <Image src={optimizeImage(withImages.find(function (p) { return p.name.toLowerCase().includes('tabla') })!.images![0], 800)} alt="Personalización" fill className="object-cover" />
-            ) : <div className="w-full h-full bg-beige-light" />}
+            <Image src={PERSONALIZE_IMG} alt="Personalización" fill className="object-cover" />
           </div>
           <div>
             <h2 className="font-display text-4xl md:text-5xl mb-4">Tu toque personal</h2>
@@ -155,10 +170,10 @@ export default async function HomePage() {
           <h2 className="font-display text-3xl mb-2">@emilia__mx_</h2>
           <p className="text-charcoal text-sm mb-8">Síguenos para inspirarte</p>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
-            {withImages.slice(0, 5).map(function (p) {
+            {INSTA_IMGS.map(function (img, i) {
               return (
-                <a key={p.id} href="https://instagram.com/emilia__mx_" target="_blank" rel="noopener noreferrer" className="relative aspect-square overflow-hidden group">
-                  <Image src={optimizeImage(p.images![0], 400)} alt={p.name} fill sizes="(max-width:640px) 50vw, 20vw" className="object-cover transition-transform duration-500 group-hover:scale-110" />
+                <a key={i} href="https://instagram.com/emilia__mx_" target="_blank" rel="noopener noreferrer" className="relative aspect-square overflow-hidden group">
+                  <Image src={img} alt={'Emilia ' + (i + 1)} fill sizes="(max-width:640px) 50vw, 20vw" className="object-cover transition-transform duration-500 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors" />
                 </a>
               )
