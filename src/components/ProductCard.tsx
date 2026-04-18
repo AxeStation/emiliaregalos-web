@@ -12,7 +12,7 @@ export default function ProductCard({ product }: { product: Product }) {
 
   return (
     <Link href={'/catalogo/' + slug} className="group block">
-      <div className="relative aspect-square overflow-hidden rounded-sm bg-beige-light mb-3">
+      <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-beige-light mb-3">
         {img ? (
           <Image
             src={optimizeImage(img, 600)}
