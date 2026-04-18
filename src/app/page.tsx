@@ -72,7 +72,7 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto">
           <h2 className="font-display text-4xl md:text-5xl text-center mb-3">Para cada ocasión</h2>
           <p className="text-center text-charcoal text-sm mb-12 max-w-lg mx-auto">
-            Regalos que cuentan historias. Encuentra el detalle perfecto para quien más quieres.
+            Regalos que cuentan historias. Encuentra el regalo perfecto para quien más quieres.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {CATS.map(function (cat) {

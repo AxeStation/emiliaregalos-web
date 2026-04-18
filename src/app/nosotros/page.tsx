@@ -20,7 +20,7 @@ export default function NosotrosPage() {
             Puede ser un momento, una sorpresa, una declaración de cariño que se recuerda para siempre.
           </p>
           <p>
-            Desde Puebla, Ana Ventura selecciona a mano cada material — maderas de parota, vinos artesanales,
+            Desde Puebla, Ana Ventura selecciona a mano cada material — maderas de parota, vinos,
             velas aromáticas, textiles suaves — y los combina en cajas y tablas que cuentan historias.
           </p>
           <p>
@@ -33,7 +33,7 @@ export default function NosotrosPage() {
             <span className="text-3xl text-gold-strong block mb-4">✦</span>
             <p className="font-display text-2xl mb-2">Cada regalo es único</p>
             <p className="text-xs text-beige">
-              No trabajamos con catálogos fijos. Cada caja se arma según la ocasión,
+              Cada caja se arma según la ocasión,
               el presupuesto y los gustos de quien la recibe.
             </p>
           </div>
@@ -41,9 +41,9 @@ export default function NosotrosPage() {
           <h2 className="font-display text-3xl pt-4">Nuestros valores</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {[
-              { title: 'Calidad sin prisa', desc: 'Cada regalo toma el tiempo que necesita. No producimos en masa.' },
+              { title: 'Calidad en cada detalle', desc: 'Seleccionamos los mejores materiales para que cada regalo se vea y se sienta premium.' },
               { title: 'Materiales reales', desc: 'Maderas, telas y productos que se ven y se sienten premium.' },
-              { title: 'Atención personal', desc: 'Ana atiende cada pedido. No hay call center, hay conversación.' },
+              { title: 'Atención dedicada', desc: 'Cada pedido recibe la atención que merece. Tu regalo es nuestra prioridad.' },
               { title: 'Puebla, siempre', desc: 'Apoyamos productores y artesanos locales siempre que es posible.' },
             ].map(function (v) {
               return (

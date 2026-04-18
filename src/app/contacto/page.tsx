@@ -42,7 +42,7 @@ export default function ContactoPage() {
             </div>
           </a>
 
-          <a href="https://facebook.com/emilia.mx" target="_blank" rel="noopener noreferrer"
+          <a href="https://www.facebook.com/profile.php?id=61567623254017" target="_blank" rel="noopener noreferrer"
             className="flex items-center gap-4 bg-beige-light rounded-lg p-5 hover:bg-gold/10 transition-colors">
             <div className="w-12 h-12 bg-[#1877F2] rounded-full flex items-center justify-center shrink-0">
               <span className="text-white text-lg font-bold">f</span>
