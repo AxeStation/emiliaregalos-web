@@ -66,9 +66,13 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-cream/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
+        <div className="border-t border-cream/10 pt-6 text-center space-y-4">
           <p className="text-xs text-cream/30">&copy; 2026 Emilia — detalles memorables</p>
-          <a href="https://synxia.com.mx" target="_blank" rel="noopener noreferrer" className="text-xs text-cream/20 hover:text-cream/40 transition-colors">Potenciado por Synxia</a>
+          <div className="w-12 h-px bg-gold-strong/30 mx-auto" />
+          <p className="text-xs">
+            <span className="text-cream/30">Potenciado por </span>
+            <a href="https://synxia.com.mx" target="_blank" rel="noopener noreferrer" className="text-gold-strong font-semibold hover:brightness-125 hover:underline underline-offset-2 decoration-gold-strong/40 transition-all">Synxia</a>
+          </p>
         </div>
       </div>
     </footer>
