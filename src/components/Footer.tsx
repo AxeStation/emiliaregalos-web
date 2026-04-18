@@ -68,7 +68,7 @@ export default function Footer() {
 
         <div className="border-t border-cream/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-xs text-cream/30">&copy; 2026 Emilia — detalles memorables</p>
-          <p className="text-xs text-cream/20">Potenciado por Synxia</p>
+          <a href="https://synxia.com.mx" target="_blank" rel="noopener noreferrer" className="text-xs text-cream/20 hover:text-cream/40 transition-colors">Potenciado por Synxia</a>
         </div>
       </div>
     </footer>
