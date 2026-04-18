@@ -48,9 +48,9 @@ export default function Footer() {
           <div>
             <h4 className="font-display text-lg text-cream mb-4">Contacto</h4>
             <div className="space-y-3 text-xs text-cream/50">
-              <a href="https://wa.me/522222395667" className="flex items-center gap-2 hover:text-gold transition-colors">
+              <a href="https://wa.me/522225011994" className="flex items-center gap-2 hover:text-gold transition-colors">
                 <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current"><path d="M12 4a8 8 0 00-6.93 12l-1 3.6 3.7-1A8 8 0 1012 4z"/></svg>
-                222 239 5667
+                222 501 1994
               </a>
               <a href="https://instagram.com/emilia__mx_" className="flex items-center gap-2 hover:text-gold transition-colors">
                 @emilia__mx_

@@ -17,7 +17,7 @@ export default function ContactoPage() {
         <div className="space-y-4">
           {/* WhatsApp — primary */}
           <a
-            href="https://wa.me/522222395667?text=Hola!%20Me%20interesa%20cotizar%20un%20regalo%20personalizado."
+            href="https://wa.me/522225011994?text=Hola!%20Me%20interesa%20cotizar%20un%20regalo%20personalizado."
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-4 bg-[#25D366]/10 border border-[#25D366]/20 rounded-lg p-5 hover:bg-[#25D366]/20 transition-colors"
@@ -27,7 +27,7 @@ export default function ContactoPage() {
             </div>
             <div>
               <p className="font-medium text-sm">WhatsApp</p>
-              <p className="text-xs text-charcoal">222 239 5667 — Respuesta inmediata</p>
+              <p className="text-xs text-charcoal">222 501 1994 — Respuesta inmediata</p>
             </div>
           </a>
 

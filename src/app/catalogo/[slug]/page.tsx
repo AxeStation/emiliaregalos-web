@@ -102,7 +102,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
                 Pedir por WhatsApp
               </a>
               <a
-                href="https://wa.me/522222395667?text=Hola!%20Me%20interesa%20una%20cotización%20corporativa."
+                href="https://wa.me/522225011994?text=Hola!%20Me%20interesa%20una%20cotización%20corporativa."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-center border border-gold/30 text-charcoal text-xs tracking-[0.2em] uppercase px-8 py-4 rounded-full hover:border-gold-strong hover:text-gold-strong transition-colors"

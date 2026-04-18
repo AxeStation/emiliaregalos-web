@@ -34,7 +34,7 @@ export default function Navbar() {
             )
           })}
           <a
-            href="https://wa.me/522222395667"
+            href="https://wa.me/522225011994"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 bg-gold-strong text-white text-xs tracking-wider uppercase px-5 py-2.5 rounded-full hover:bg-gold transition-colors"
@@ -72,7 +72,7 @@ export default function Navbar() {
             )
           })}
           <a
-            href="https://wa.me/522222395667"
+            href="https://wa.me/522225011994"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-center bg-gold-strong text-white text-sm tracking-wider uppercase px-5 py-3 rounded-full"

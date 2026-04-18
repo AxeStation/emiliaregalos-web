@@ -36,7 +36,7 @@ export function optimizeImage(url: string, width: number): string {
   return base + '/storage/v1/render/image/public/' + path + '?width=' + width + '&resize=contain&quality=80'
 }
 
-export var WA_NUMBER = '522222395667'
+export var WA_NUMBER = '522225011994'
 export var WA_URL = 'https://wa.me/' + WA_NUMBER
 
 export function waProductUrl(product: Product): string {
