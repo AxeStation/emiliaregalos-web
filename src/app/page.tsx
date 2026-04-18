@@ -27,6 +27,7 @@ var INSTA_IMGS = [
   WEB + 'caja-caf.jpg',
   WEB + 'tabla-pampas.jpg',
   WEB + 'orquidea.jpg',
+  WEB + 'caja-frazada.jpg',
 ]
 
 async function getProducts(): Promise<Product[]> {
@@ -171,7 +172,7 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="font-display text-3xl mb-2">@emilia__mx_</h2>
           <p className="text-charcoal text-sm mb-8">Síguenos para inspirarte</p>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
             {INSTA_IMGS.map(function (img, i) {
               return (
                 <a key={i} href="https://instagram.com/emilia__mx_" target="_blank" rel="noopener noreferrer" className="relative aspect-square overflow-hidden group">
