@@ -2,13 +2,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
-import { type Product, fmtPrice, productSlug, optimizeImage, waProductUrl } from '@/lib/types'
+import { type Product, fmtPrice, productSlug, optimizeImage, waProductUrl, sePublica } from '@/lib/types'
 import ProductCard from '@/components/ProductCard'
 import type { Metadata } from 'next'
 
 async function getAllProducts(): Promise<Product[]> {
   var { data } = await supabase.from('emilia_products').select('*').eq('is_active', true).order('name')
-  return (data || []) as Product[]
+  return ((data || []) as Product[]).filter(sePublica)
 }
 
 export var revalidate = 3600
@@ -32,7 +32,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
   var images = product.images || []
   var variants = Array.isArray(product.variants) ? product.variants : []
   var related = products
-    .filter(function (p) { return p.category === product!.category && p.id !== product!.id && p.images && p.images.length > 0 })
+    .filter(function (p) { return p.category === product!.category && p.id !== product!.id })
     .slice(0, 3)
 
   return (

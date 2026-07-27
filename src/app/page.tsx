@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
-import { type Product } from '@/lib/types'
+import { type Product, sePublica } from '@/lib/types'
 import ProductCard from '@/components/ProductCard'
 
 var LOGO_WHITE = 'https://llpejrdkipyysmxydsnm.supabase.co/storage/v1/object/public/products/emilia/emilia-logo-ivory.png'
@@ -36,15 +36,17 @@ async function getProducts(): Promise<Product[]> {
     .select('id, name, category, base_price, variants, images, is_active, description')
     .eq('is_active', true)
     .order('name')
-  return (data || []) as Product[]
+  return ((data || []) as Product[]).filter(sePublica)
 }
 
 export var revalidate = 3600
 
 export default async function HomePage() {
   var products = await getProducts()
-  var withImages = products.filter(function (p) { return p.images && p.images.length > 0 })
-  var featured = withImages.slice(0, 6)
+  // getProducts ya aplica sePublica (is_active + tiene foto), asi que este
+  // filtro por imagenes dejo de hacer falta: era la misma regla escrita a mano
+  // en un solo lugar de tres.
+  var featured = products.slice(0, 6)
 
   var CATS = ['Para Ella', 'Para Él', 'Padrinos', 'Bebés', 'Aniversarios', 'Eventos Sociales', 'Empresarial', 'Detalles']
 

@@ -9,6 +9,45 @@ export type Product = {
   description: string | null
 }
 
+/**
+ * ¿Este producto se muestra en el sitio público?
+ *
+ * ════════════════════════════════════════════════════════════════
+ * LA REGLA: sin foto no se publica. Y vive ACÁ, no en una bandera.
+ * ════════════════════════════════════════════════════════════════
+ * Hasta el 27-jul-2026 el sitio filtraba sólo por `is_active`, y esa columna
+ * había quedado significando dos cosas a la vez: "se muestra en el catálogo
+ * público" y "Ana puede cotizarlo". Los productos nuevos entraban con
+ * is_active=false hasta tener foto — eso protegía al sitio pero le impedía a
+ * Ana cotizarlos por WhatsApp, y la foto no le importa a un PDF que ella manda:
+ * le importa a la clienta que entra a la web.
+ *
+ * Se resolvió moviendo la regla al FILTRO en vez de crear otra bandera:
+ * `is_active` vuelve a significar UNA sola cosa ("existe y se puede usar") y la
+ * publicación se decide acá, donde no hay que acordarse de nada. Una regla en
+ * el filtro no se olvida; una bandera sí.
+ *
+ * De paso arregla que Orquídea y Tabla Tequileros 2 llevaban desde abril
+ * publicados SIN foto, mostrándole un cuadro vacío a clientas reales.
+ *
+ * ⚠️ EL HUECO CONOCIDO, con nombre y apellido
+ * La regla es simétrica: tener foto AHORA OBLIGA a publicar. Hoy no hay forma
+ * de sacar del sitio un producto con foto sin desactivarlo — y desactivarlo
+ * vuelve a bloquear la cotización, que es justo lo que esto vino a arreglar.
+ *
+ * Ya hay TRES productos esperando esa decisión de Ana (hoja "QUE FALTA" del
+ * catálogo oficial): CAJA BOTELLA, CAJA TERMO y TABLA TEQUILEROS 2. Los tres
+ * salieron del catálogo PDF pero siguen publicados en el sitio.
+ *
+ * Si Ana confirma que quiere sacarlos, la salida NO es tirar esto: se agrega
+ * una columna `is_published` y la regla pasa a ser `is_published && tieneFoto`.
+ * Las dos condiciones sobreviven — por eso esta versión barata no es un parche
+ * que haya que deshacer después.
+ */
+export function sePublica(p: Product): boolean {
+  return p.is_active === true && Array.isArray(p.images) && p.images.length > 0
+}
+
 export var CATEGORIES = [
   'Para Ella', 'Para Él', 'Padrinos', 'Bebés',
   'Aniversarios', 'Eventos Sociales', 'Empresarial', 'Detalles',
