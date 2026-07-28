@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
-import { type Product, sePublica } from '@/lib/types'
+import { type Product, sePublica, normalizaCategoria } from '@/lib/types'
 import ProductCard from '@/components/ProductCard'
 
 var LOGO_WHITE = 'https://llpejrdkipyysmxydsnm.supabase.co/storage/v1/object/public/products/emilia/emilia-logo-ivory.png'
@@ -15,9 +15,9 @@ var CAT_IMGS: Record<string, string> = {
   'Para Él': WEB + 'tabla-tequila.jpg',
   'Padrinos': WEB + 'caja-vino-mini.jpg',
   'Bebés': WEB + 'caja-beb.jpg',
-  'Empresarial': WEB + 'caja-madera-1.jpg',
+  'Empresariales': WEB + 'caja-madera-1.jpg',
   'Aniversarios': WEB + 'tabla-vino.jpg',
-  'Eventos Sociales': WEB + 'caja-frazada.jpg',
+  'Recuerdos': WEB + 'caja-frazada.jpg',
   'Detalles': WEB + 'bandeja-vela.jpg',
 }
 
@@ -36,7 +36,7 @@ async function getProducts(): Promise<Product[]> {
     .select('id, name, category, base_price, variants, images, is_active, description')
     .eq('is_active', true)
     .order('name')
-  return ((data || []) as Product[]).filter(sePublica)
+  return ((data || []) as Product[]).filter(sePublica).map(normalizaCategoria)
 }
 
 export var revalidate = 3600
@@ -48,7 +48,7 @@ export default async function HomePage() {
   // en un solo lugar de tres.
   var featured = products.slice(0, 6)
 
-  var CATS = ['Para Ella', 'Para Él', 'Padrinos', 'Bebés', 'Aniversarios', 'Eventos Sociales', 'Empresarial', 'Detalles']
+  var CATS = ['Para Ella', 'Para Él', 'Padrinos', 'Bebés', 'Aniversarios', 'Recuerdos', 'Empresariales', 'Detalles']
 
   return (
     <>

@@ -20,7 +20,7 @@ export default function Footer() {
           <div>
             <h4 className="font-display text-lg text-cream mb-4">Catálogo</h4>
             <div className="space-y-2">
-              {['Para Ella', 'Para Él', 'Padrinos', 'Bebés', 'Empresarial'].map(function (c) {
+              {['Para Ella', 'Para Él', 'Padrinos', 'Bebés', 'Empresariales'].map(function (c) {
                 return (
                   <Link key={c} href={'/catalogo?cat=' + encodeURIComponent(c)} className="block text-xs text-cream/50 hover:text-gold transition-colors">
                     {c}

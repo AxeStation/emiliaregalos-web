@@ -1,5 +1,5 @@
 import { supabase } from '@/lib/supabase'
-import { type Product, sePublica } from '@/lib/types'
+import { type Product, sePublica, normalizaCategoria } from '@/lib/types'
 import { Suspense } from 'react'
 import CatalogFilters from './CatalogFilters'
 import type { Metadata } from 'next'
@@ -21,7 +21,7 @@ async function getProducts(): Promise<Product[]> {
   // El filtro va ACA y no en el render: `products.length` alimenta el contador
   // "N productos hechos a mano". Si se filtrara mas abajo, el contador diria 63
   // mostrando 58.
-  return ((data || []) as Product[]).filter(sePublica)
+  return ((data || []) as Product[]).filter(sePublica).map(normalizaCategoria)
 }
 
 export default async function CatalogoPage() {
