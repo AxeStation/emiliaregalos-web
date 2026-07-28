@@ -50,8 +50,30 @@ export function sePublica(p: Product): boolean {
 
 export var CATEGORIES = [
   'Para Ella', 'Para Él', 'Padrinos', 'Bebés',
-  'Aniversarios', 'Eventos Sociales', 'Empresarial', 'Detalles',
+  'Aniversarios', 'Recuerdos', 'Empresariales', 'Detalles',
 ] as const
+
+/**
+ * Nombres que Ana pidió el 28-jul-2026. La base todavía tiene los viejos, y se
+ * renombra por separado — este mapa hace que el orden no importe.
+ *
+ * PASO DE CONTRAER, para cuando la base ya esté renombrada: borrar este mapa y
+ * la llamada a normalizaCategoria() en los dos getProducts(). Mientras el mapa
+ * exista, los dos nombres funcionan; cuando ya no queden filas con los viejos,
+ * sobra.
+ */
+var CATEGORIA_RENOMBRADA: Record<string, string> = {
+  'Empresarial': 'Empresariales',
+  'Eventos Sociales': 'Recuerdos',
+}
+
+export function normalizaCategoria<T extends { category: string | null }>(p: T): T {
+  var c = p.category
+  if (c && CATEGORIA_RENOMBRADA[c]) {
+    return Object.assign({}, p, { category: CATEGORIA_RENOMBRADA[c] })
+  }
+  return p
+}
 
 export function fmtPrice(n: number | null | undefined): string {
   if (n == null) return ''

@@ -10,7 +10,7 @@ var LINKS = [
   { href: '/catalogo', label: 'Catálogo' },
   { href: '/#categorias', label: 'Ocasiones' },
   { href: '/#personaliza', label: 'Personaliza' },
-  { href: '/#empresarial', label: 'Empresarial' },
+  { href: '/#empresarial', label: 'Empresariales' },
   { href: '/nosotros', label: 'Nosotros' },
 ]
 
