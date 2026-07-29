@@ -52,7 +52,16 @@ export default async function ProductPage({ params }: { params: { slug: string }
               <div className="relative aspect-[3/4] rounded-sm overflow-hidden mb-3">
                 <Image src={optimizeImage(images[0], 900)} alt={product.name} fill className="object-cover object-bottom" priority sizes="(max-width:768px) 100vw, 50vw" />
               </div>
-            ) : null}
+            ) : (
+              /* Sin foto todavía. Antes esto era `null` y la columna entera
+                 desaparecía: la ficha quedaba con el texto a un lado y medio
+                 ancho vacío al otro, que se lee como página rota. Con el
+                 marcador de marca —el mismo que ya usaba ProductCard— el hueco
+                 se ve deliberado mientras Ana sube la foto desde su dashboard. */
+              <div className="relative aspect-[3/4] rounded-sm overflow-hidden mb-3 bg-beige-light flex items-center justify-center">
+                <span className="font-display text-6xl text-gold/40">E</span>
+              </div>
+            )}
             {images.length > 1 ? (
               <div className="grid grid-cols-4 gap-2">
                 {images.slice(1, 5).map(function (img, i) {
