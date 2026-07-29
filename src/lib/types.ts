@@ -44,8 +44,30 @@ export type Product = {
  * Las dos condiciones sobreviven — por eso esta versión barata no es un parche
  * que haya que deshacer después.
  */
+/*
+ * ⚠️ LA CONDICIÓN DE LA FOTO SE QUITÓ EL 28-jul-2026. Decisión de Julu.
+ *
+ * Todo lo de arriba explica por qué se agregó en abril: Orquídea y Tabla
+ * Tequileros 2 llevaban meses mostrándole un cuadro vacío a clientas reales.
+ * Eso NO se olvidó — cambió el motivo.
+ *
+ * Entonces el hueco era un accidente que nadie eligió, y la ficha del producto
+ * ni siquiera lo manejaba: renderizaba `null` y la columna de la imagen
+ * desaparecía, dejando media página en blanco.
+ *
+ * Ahora es deliberado y temporal: 8 productos activos esperan foto, Ana las va a
+ * subir desde su dashboard, y mientras tanto vale más que se vean a que no
+ * existan para una clienta que entra a la web. Y el hueco está resuelto en los
+ * DOS lugares — ProductCard ya tenía el marcador de marca y la ficha lo tiene
+ * desde este mismo cambio.
+ *
+ * En cuanto Ana suba las fotos esto deja de notarse solo. Si alguna vez vuelve a
+ * haber productos sin foto de forma permanente, la discusión se reabre — pero la
+ * salida NO es volver a esta condición a ciegas, porque volvería a bloquear la
+ * publicación de productos nuevos que Ana sí quiere mostrar.
+ */
 export function sePublica(p: Product): boolean {
-  return p.is_active === true && Array.isArray(p.images) && p.images.length > 0
+  return p.is_active === true
 }
 
 export var CATEGORIES = [
