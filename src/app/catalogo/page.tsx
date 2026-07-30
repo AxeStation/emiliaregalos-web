@@ -14,7 +14,10 @@ export var revalidate = 3600
 async function getProducts(): Promise<Product[]> {
   var { data } = await supabase
     .from('emilia_products')
-    .select('id, name, category, base_price, variants, images, is_active, description')
+    // '*' y no una lista de columnas: `is_published` todavía no existe en la base
+    // y nombrarla acá haría fallar el request entero hasta que la migración se
+    // aplique. Con '*' el orden de despliegue deja de importar.
+    .select('*')
     .eq('is_active', true)
     .order('category')
     .order('name')
