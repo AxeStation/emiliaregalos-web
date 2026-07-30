@@ -38,15 +38,14 @@ export type Product = {
  * de sacar del sitio un producto con foto sin desactivarlo — y desactivarlo
  * vuelve a bloquear la cotización, que es justo lo que esto vino a arreglar.
  *
- * ⚠️ ESTE PÁRRAFO NOMBRABA TRES PRODUCTOS Y NINGUNO EXISTE. Decía "CAJA
- * BOTELLA, CAJA TERMO y TABLA TEQUILEROS 2". Verificado contra la base el
- * 30-jul-2026: los dos primeros no aparecen ni en nombres, ni en
- * descripciones, ni en `catalog_products`; el tercero es ambiguo entre
- * `Tabla Tequileros` y `Bandeja Tequileros 2`. La lista se citó como si
- * viniera de Ana y costó una vuelta entera de trabajo.
+ * ⚠️ ACÁ HABÍA UNA LISTA DE TRES PRODUCTOS QUE SUPUESTAMENTE ESPERABAN SALIR
+ * DEL SITIO. Ninguno de los tres existía en la base — se verificó nombre por
+ * nombre el 30-jul-2026 — y la lista se citó durante meses como si viniera de
+ * Ana. Costó una vuelta entera de trabajo antes de que alguien la buscara.
+ * Se borró a propósito y no se repone.
  *
- * Qué productos salen del sitio NO se decide acá ni en ninguna lista escrita
- * a mano: **sale del catálogo**. Ver el bloque de abajo.
+ * Qué productos salen del sitio NO se decide acá, ni en ninguna lista escrita
+ * a mano en el código: **sale del catálogo**. Ver el bloque de abajo.
  *
  * Si Ana confirma que quiere sacarlos, la salida NO es tirar esto: se agrega
  * una columna `is_published` y la regla pasa a ser `is_published && tieneFoto`.
@@ -87,6 +86,18 @@ export type Product = {
  * que el catálogo final**. O sea que esto NO es una perilla que Ana toque
  * producto por producto: es una consecuencia de estar (o no) en el catálogo.
  * Una decisión, dos efectos.
+ *
+ * ⚠️ AL 30-jul-2026 NO HAY NADA QUE APAGAR: el catálogo real tiene 61 entradas
+ * y la base tiene 61 filas, y coinciden. Las tres entradas "de más" del
+ * catálogo son tres productos listados en DOS categorías cada uno —Caja Mini
+ * Padrinos, Caja Vino Mini y Tabla Vino—, que en la base son dos filas con el
+ * mismo nombre y el mismo precio y distinta categoría. NO son duplicados a
+ * borrar: son la estructura del catálogo. El "50 contra 61" que se reportó
+ * antes salió de comparar contra un PDF de junio en Storage, que está viejo.
+ *
+ * Así que `is_published` queda en true para los 61 y sirve el día que Ana
+ * arme un catálogo de temporada (el de navidad-2026 tenía 10 productos) —
+ * que es el único caso donde el sitio y el catálogo tienen que diferir.
  *
  * Y hoy esa decisión NO SE GUARDA EN NINGÚN LADO. Medido el 30-jul-2026:
  *   · `CatalogBuilder.tsx` arranca con la selección VACÍA cada vez
