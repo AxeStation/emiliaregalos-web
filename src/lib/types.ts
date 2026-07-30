@@ -6,6 +6,9 @@ export type Product = {
   variants: { name?: string; label?: string; price: number }[] | null
   images: string[] | null
   is_active: boolean
+  // Opcional a propósito: la migración que la crea todavía NO está aplicada.
+  // Ver sePublica() abajo.
+  is_published?: boolean
   description: string | null
 }
 
@@ -66,8 +69,31 @@ export type Product = {
  * salida NO es volver a esta condición a ciegas, porque volvería a bloquear la
  * publicación de productos nuevos que Ana sí quiere mostrar.
  */
+/*
+ * ⚠️ SE AGREGA `is_published` — 30-jul-2026. Kairós c2db36ea.
+ *
+ * El hueco que el comentario de abril anticipó con nombre y apellido: hoy no
+ * hay forma de sacar un producto del sitio sin desactivarlo, y desactivarlo
+ * bloquea la cotización. Los tres que esperaban esa decisión —CAJA BOTELLA,
+ * CAJA TERMO y TABLA TEQUILEROS 2— siguen publicados por ese acople.
+ *
+ *   is_active     ¿existe para el negocio? Lo cotiza el bot, lo ve el panel.
+ *   is_published  ¿sale en el sitio público?
+ *
+ * ⚠️ LA REGLA QUEDÓ EN `is_published`, NO en `is_published && tieneFoto`.
+ * La condición de la foto se quitó el 28-jul por decisión de Julu (publicar los
+ * 8 sin foto con el marcador de marca). Re-agregarla acá desharía esa decisión
+ * y volvería a ocultar esos 8. Si Julu quiere las dos condiciones, es una
+ * decisión suya y tiene que ser explícita.
+ *
+ * ⚠️ TOLERA QUE LA COLUMNA NO EXISTA TODAVÍA, y es a propósito: compara contra
+ * `false`, no contra `true`. Mientras la migración no esté aplicada,
+ * `is_published` llega `undefined` y el producto se publica — el comportamiento
+ * de hoy, exacto. Eso DESACOPLA el orden de despliegue: este código puede salir
+ * antes o después de la migración sin romper el sitio.
+ */
 export function sePublica(p: Product): boolean {
-  return p.is_active === true
+  return p.is_active === true && p.is_published !== false
 }
 
 export var CATEGORIES = [
