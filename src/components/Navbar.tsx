@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import CartButton from '@/components/cart/CartButton'
 
 var LOGO = 'https://llpejrdkipyysmxydsnm.supabase.co/storage/v1/object/public/products/emilia/emilia_logo_optimized.png'
 
@@ -42,18 +43,22 @@ export default function Navbar() {
             <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current"><path d="M12 4a8 8 0 00-6.93 12l-1 3.6 3.7-1A8 8 0 1012 4zm4.6 11.1c-.2.5-1 1-1.4 1-.4 0-.7.1-2.2-.5-1.8-.7-3-2.6-3.1-2.7-.1-.1-.9-1.2-.9-2.3s.6-1.6.8-1.8c.2-.2.4-.3.6-.3h.4c.2 0 .4 0 .5.4l.7 1.7c.1.2 0 .4-.1.5l-.3.4c-.1.1-.2.3-.1.5.2.3.7 1 1.4 1.6.8.7 1.5.9 1.8 1 .2.1.4 0 .5-.1l.5-.6c.1-.2.3-.2.5-.1l1.6.8c.2.1.3.2.3.4 0 .2-.1.6-.3 1.1z"/></svg>
             WhatsApp
           </a>
+          <CartButton />
         </div>
 
         {/* Mobile hamburger */}
-        <button
-          onClick={function () { setOpen(!open) }}
-          className="md:hidden absolute right-5 w-10 h-10 flex flex-col items-center justify-center gap-1.5"
-          aria-label="Menú"
-        >
-          <span className={'block w-6 h-0.5 bg-charcoal transition-all ' + (open ? 'rotate-45 translate-y-2' : '')} />
-          <span className={'block w-6 h-0.5 bg-charcoal transition-all ' + (open ? 'opacity-0' : '')} />
-          <span className={'block w-6 h-0.5 bg-charcoal transition-all ' + (open ? '-rotate-45 -translate-y-2' : '')} />
-        </button>
+        <div className="md:hidden absolute right-5 flex items-center gap-1">
+          <CartButton />
+          <button
+            onClick={function () { setOpen(!open) }}
+            className="w-10 h-10 flex flex-col items-center justify-center gap-1.5"
+            aria-label="Menú"
+          >
+            <span className={'block w-6 h-0.5 bg-charcoal transition-all ' + (open ? 'rotate-45 translate-y-2' : '')} />
+            <span className={'block w-6 h-0.5 bg-charcoal transition-all ' + (open ? 'opacity-0' : '')} />
+            <span className={'block w-6 h-0.5 bg-charcoal transition-all ' + (open ? '-rotate-45 -translate-y-2' : '')} />
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
