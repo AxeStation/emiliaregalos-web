@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { type Product, fmtPrice, productSlug, optimizeImage, waProductUrl, sePublica } from '@/lib/types'
 import ProductCard from '@/components/ProductCard'
+import AddToCart from '@/components/cart/AddToCart'
 import type { Metadata } from 'next'
 
 async function getAllProducts(): Promise<Product[]> {
@@ -102,6 +103,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
             ) : null}
 
             <div className="space-y-3 mt-auto">
+              <AddToCart product={product} />
               <a
                 href={waProductUrl(product)}
                 target="_blank"

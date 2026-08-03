@@ -8,6 +8,13 @@
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "bundler",
+    // Los módulos en src/lib/*.ts se importan entre sí con extensión ".ts"
+    // explícita (ej. src/lib/quote.ts -> './cart.ts') a propósito: así los
+    // corre TANTO Next (bundler resuelve el archivo igual) COMO el test
+    // runner nativo de Node (`node --experimental-strip-types --test`),
+    // que SÍ exige extensión en imports relativos. Sin este flag, `tsc`
+    // rechaza esa extensión con TS5097. Requiere noEmit (ya está arriba).
+    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
