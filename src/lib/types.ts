@@ -133,7 +133,7 @@ export function sePublica(p: Product): boolean {
 }
 
 export var CATEGORIES = [
-  'Para Ella', 'Para Él', 'Padrinos', 'Bebés',
+  'Para Ella', 'Para Él', 'Padrinos', 'Bebés & Niños',
   'Aniversarios', 'Recuerdos', 'Empresariales', 'Detalles',
 ] as const
 
@@ -149,6 +149,17 @@ export var CATEGORIES = [
 var CATEGORIA_RENOMBRADA: Record<string, string> = {
   'Empresarial': 'Empresariales',
   'Eventos Sociales': 'Recuerdos',
+  // oct-2026: Ana la quiere como "Bebés & Niños". La base se renombra con un
+  // UPDATE aparte, DESPUÉS del deploy; mientras tanto este renglón hace que
+  // los productos con el nombre viejo sigan cayendo en la categoría nueva.
+  'Bebés': 'Bebés & Niños',
+}
+
+// Nombre viejo → nombre vigente. Lo usan normalizaCategoria() al leer productos
+// y CatalogFilters para los enlaces viejos (?cat=Bebés), que siguen funcionando.
+export function normalizaNombreCategoria(c: string | null | undefined): string | null {
+  if (!c) return null
+  return CATEGORIA_RENOMBRADA[c] || c
 }
 
 export function normalizaCategoria<T extends { category: string | null }>(p: T): T {
