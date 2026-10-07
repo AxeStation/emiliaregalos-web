@@ -2,12 +2,15 @@
 
 import { useMemo, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { type Product, CATEGORIES } from '@/lib/types'
+import { type Product, CATEGORIES, normalizaNombreCategoria } from '@/lib/types'
 import ProductCard from '@/components/ProductCard'
 
 export default function CatalogFilters({ products }: { products: Product[] }) {
   var params = useSearchParams()
-  var initialCat = params.get('cat') || 'Todas'
+  // La "redirección" del nombre viejo vive acá: la categoría es un query param
+  // (?cat=Bebés), no una ruta, así que un enlace guardado o indexado con el
+  // nombre viejo se traduce al vigente en vez de caer en "Sin resultados".
+  var initialCat = normalizaNombreCategoria(params.get('cat')) || 'Todas'
   var [category, setCategory] = useState(initialCat)
   var [search, setSearch] = useState('')
 

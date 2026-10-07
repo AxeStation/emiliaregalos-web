@@ -14,7 +14,7 @@ var CAT_IMGS: Record<string, string> = {
   'Para Ella': WEB + 'caja-recuerdo.jpg',
   'Para Él': WEB + 'tabla-tequila.jpg',
   'Padrinos': WEB + 'caja-vino-mini.jpg',
-  'Bebés': WEB + 'caja-beb.jpg',
+  'Bebés & Niños': WEB + 'caja-beb.jpg',
   'Empresariales': WEB + 'caja-madera-1.jpg',
   'Aniversarios': WEB + 'tabla-vino.jpg',
   'Recuerdos': WEB + 'caja-frazada.jpg',
@@ -51,7 +51,7 @@ export default async function HomePage() {
   // en un solo lugar de tres.
   var featured = products.slice(0, 6)
 
-  var CATS = ['Para Ella', 'Para Él', 'Padrinos', 'Bebés', 'Aniversarios', 'Recuerdos', 'Empresariales', 'Detalles']
+  var CATS = ['Para Ella', 'Para Él', 'Padrinos', 'Bebés & Niños', 'Aniversarios', 'Recuerdos', 'Empresariales', 'Detalles']
 
   return (
     <>
