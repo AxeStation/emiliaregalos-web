@@ -46,6 +46,19 @@ const nextConfig = {
       },
     ];
   },
+
+  // Página suelta /propuesta-design/ (HTML estático en public/, sin liga desde
+  // el sitio). Next no sirve index.html de una carpeta de public/: sin esto,
+  // /propuesta-design/ hace 308 a /propuesta-design y ahí da 404. La diagonal
+  // final sigue redirigiendo (308) como en todo el sitio; no se apaga eso
+  // globalmente por una sola página.
+  async rewrites() {
+    return {
+      beforeFiles: [
+        { source: '/propuesta-design', destination: '/propuesta-design/index.html' },
+      ],
+    };
+  },
 };
 
 export default nextConfig;
