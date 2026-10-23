@@ -23,6 +23,8 @@ Estructura `src/` es deliberada (a diferencia de `singo-landing` que tiene `app/
   - `SUPABASE_SERVICE_ROLE_KEY` — JWT que **bypassa RLS**. Se usa en `src/lib/supabase.ts` SOLO en server components / API routes. Si filtra al bundle del cliente, exposición total de la DB.
 - **Públicos** (`NEXT_PUBLIC_*` — Next.js los inyecta al cliente):
   - `NEXT_PUBLIC_SUPABASE_URL` — URL del proyecto Supabase (público per Supabase docs).
+  - `NEXT_PUBLIC_GADS_ID` — ID de la etiqueta de Google Ads (gtag.js, `AW-XXXXXXXXXX`). Agregada en el PR "Medición para Ads" (oct-2026). **Todas opcionales y FAIL-CLOSED**: sin la variable no se carga ningún script ni sale ninguna petición a `googletagmanager.com`. Ver `src/lib/gtag.ts`.
+  - `NEXT_PUBLIC_GADS_CONV_WHATSAPP` / `NEXT_PUBLIC_GADS_CONV_LLAMADA` — etiquetas de conversión (`AW-XXXX/YYYY`) para clics en WhatsApp y `tel:` respectivamente. Ver `src/lib/conversions.ts`. Sin ellas, el clic funciona igual pero no se manda ningún evento — nunca hay una etiqueta inventada de fallback.
 
 Si Code futuro intenta "rotar" `NEXT_PUBLIC_SUPABASE_URL` pensando que es secret — NO. Es público por diseño del prefix `NEXT_PUBLIC_`. La URL no es credencial.
 
@@ -48,6 +50,8 @@ git add -A && git commit -m "msg" && git push
 4. **Tablas `emilia_*` en Supabase** son compartidas con synxia-brain (tenant `emilia`). NO escribir desde este sitio (ALTER, INSERT, UPDATE, DELETE) — solo lectura. Las mutaciones van por el bot via WhatsApp (handle-emilia.js + tools de synxia-brain).
 5. **WhatsApp button** apunta al número productivo de Emilia (`5212225011994`, ver synxia-brain CLAUDE.md → tenant emilia → `alert_notify_phone`). Cambiarlo desvía leads.
 6. **Fotos** en `public/` son productivas (commit `e6385b3` "feat: add 25 curated photos — hero, categories, Instagram sections"). Sustitución requiere criterio editorial alineado con la dueña.
+7. **Mensajes de WhatsApp centralizados** en `src/lib/whatsapp.ts` (`enlaceWhatsApp(contexto)`), agregado en el PR "Medición para Ads" (oct-2026). EXCEPCIÓN: la ficha de producto (`src/app/catalogo/[slug]/page.tsx`) sigue usando `waProductUrl()` de `src/lib/types.ts` — NO pasa por el módulo nuevo, a propósito, porque ya tenía mensaje dinámico con nombre/precio del producto.
+8. **Conversiones de Ads = SOLO clics reales en WhatsApp/`tel:`.** El listener vive ÚNICO en `src/components/ClickTracker.tsx` (montado en `layout.tsx`). NADA de `page_view` como conversión, y ningún botón debe tener su propio `onClick` de tracking copiado — eso rompería el "una sola implementación" que un test de `test/conversions.test.ts` guarda.
 
 ## Deps externas
 - Vercel (deploy + hosting).

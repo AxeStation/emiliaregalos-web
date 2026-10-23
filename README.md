@@ -1,5 +1,19 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Medición para Google Ads (variables de entorno públicas)
+
+Todas opcionales — sin ellas el sitio funciona exactamente igual (los
+enlaces de WhatsApp/llamada navegan normal) y no se manda nada a Google.
+Ver `src/lib/gtag.ts` y `src/lib/conversions.ts` para el porqué fail-closed.
+
+- `NEXT_PUBLIC_GADS_ID` — ID de la etiqueta de Google (gtag.js), formato
+  `AW-XXXXXXXXXX`. Sin ella, NINGÚN script se carga (ni petición a
+  googletagmanager.com).
+- `NEXT_PUBLIC_GADS_CONV_WHATSAPP` — etiqueta de conversión para clics en
+  enlaces de WhatsApp, formato `AW-XXXX/YYYY`.
+- `NEXT_PUBLIC_GADS_CONV_LLAMADA` — etiqueta de conversión para clics en
+  enlaces `tel:`, mismo formato.
+
 ## Getting Started
 
 First, run the development server:
