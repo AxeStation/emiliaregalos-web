@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { enlaceWhatsApp } from '@/lib/whatsapp'
 
 export var metadata: Metadata = {
   title: 'Contacto — Emilia Regalos',
@@ -15,9 +16,9 @@ export default function ContactoPage() {
         </p>
 
         <div className="space-y-4">
-          {/* WhatsApp — primary */}
+          {/* WhatsApp — primary. Texto SIN CAMBIO, sólo centralizado (contexto 'contacto'). */}
           <a
-            href="https://wa.me/522225011994?text=Hola!%20Me%20interesa%20cotizar%20un%20regalo%20personalizado."
+            href={enlaceWhatsApp('contacto')}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-4 bg-[#25D366]/10 border border-[#25D366]/20 rounded-lg p-5 hover:bg-[#25D366]/20 transition-colors"

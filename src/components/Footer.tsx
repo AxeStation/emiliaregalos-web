@@ -1,5 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { enlaceWhatsApp } from '@/lib/whatsapp'
+import { TEL_HREF } from '@/lib/types'
 
 var LOGO_WHITE = 'https://llpejrdkipyysmxydsnm.supabase.co/storage/v1/object/public/products/emilia/emilia-logo-blanco.png'
 
@@ -48,9 +50,18 @@ export default function Footer() {
           <div>
             <h4 className="font-display text-lg text-cream mb-4">Contacto</h4>
             <div className="space-y-3 text-xs text-cream/50">
-              <a href="https://wa.me/522225011994" className="flex items-center gap-2 hover:text-gold transition-colors">
+              <a href={enlaceWhatsApp('footer')} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-gold transition-colors">
                 <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current"><path d="M12 4a8 8 0 00-6.93 12l-1 3.6 3.7-1A8 8 0 1012 4z"/></svg>
                 222 501 1994
+              </a>
+              {/* Llamar — enlace tel: aparte del de WhatsApp (encargo "Medición
+                  para Ads" oct-2026, punto c). Mismo número, mismo formato
+                  visible de hoy; el esquema tel: lleva + y lada (TEL_HREF). */}
+              <a href={TEL_HREF} className="flex items-center gap-2 hover:text-gold transition-colors">
+                <svg viewBox="0 0 24 24" className="w-4 h-4 fill-none stroke-current stroke-[1.7]">
+                  <path d="M6.5 3h3l1.5 4.5-2 1.5a12 12 0 006 6l1.5-2L21 14.5v3c0 1.1-.9 2-2 2C11.5 19.5 4.5 12.5 4.5 5c0-1.1.9-2 2-2z" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                222 501 1994 <span className="text-cream/30">· Llamar</span>
               </a>
               <a href="https://instagram.com/emilia__mx_" className="flex items-center gap-2 hover:text-gold transition-colors">
                 @emilia__mx_

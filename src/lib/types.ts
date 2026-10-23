@@ -195,6 +195,12 @@ export function optimizeImage(url: string, width: number): string {
 export var WA_NUMBER = '522225011994'
 export var WA_URL = 'https://wa.me/' + WA_NUMBER
 
+// Encargo "Medición para Ads" (oct-2026): mismo número, para el enlace de
+// llamada (tel:). Formato con + y lada país porque así lo exige el esquema
+// tel: para que el teléfono (iOS/Android) no lo interprete como local.
+export var TEL_NUMBER = '+522225011994'
+export var TEL_HREF = 'tel:' + TEL_NUMBER
+
 export function waProductUrl(product: Product): string {
   var price = product.base_price ? fmtPrice(product.base_price) : ''
   var msg = 'Hola! Me interesa ' + product.name + (price ? ' (' + price + ')' : '') + '. ¿Está disponible?'
