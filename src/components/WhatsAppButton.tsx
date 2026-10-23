@@ -1,9 +1,25 @@
 'use client'
 
+import { usePathname } from 'next/navigation'
+import { enlaceWhatsApp, type ContextoWhatsApp } from '@/lib/whatsapp'
+
+// Burbuja flotante global (en TODAS las páginas vía layout.tsx). El mensaje
+// cambia según dónde esté el visitante — "distinto según página/botón" (d) —
+// sin agregar un botón nuevo: inicio y catálogo ya tenían este enlace, sólo
+// que sin ?text=. Fuera de esas dos secciones usa el mensaje genérico.
+function contextoPorRuta(pathname: string): ContextoWhatsApp {
+  if (pathname === '/') return 'flotanteInicio'
+  if (pathname.indexOf('/catalogo') === 0) return 'flotanteCatalogo'
+  return 'flotante'
+}
+
 export default function WhatsAppButton() {
+  var pathname = usePathname()
+  var href = enlaceWhatsApp(contextoPorRuta(pathname || ''))
+
   return (
     <a
-      href="https://wa.me/522225011994"
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-6 right-6 z-40 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg shadow-[#25D366]/30 hover:scale-110 transition-transform"

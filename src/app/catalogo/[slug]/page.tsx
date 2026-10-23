@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
-import { type Product, fmtPrice, productSlug, optimizeImage, waProductUrl, sePublica } from '@/lib/types'
+import { type Product, fmtPrice, productSlug, optimizeImage, waProductUrl, sePublica, TEL_HREF } from '@/lib/types'
 import ProductCard from '@/components/ProductCard'
 import AddToCart from '@/components/cart/AddToCart'
 import type { Metadata } from 'next'
@@ -119,6 +119,14 @@ export default async function ProductPage({ params }: { params: { slug: string }
                 className="block text-center border border-gold/30 text-charcoal text-xs tracking-[0.2em] uppercase px-8 py-4 rounded-full hover:border-gold-strong hover:text-gold-strong transition-colors"
               >
                 Solicitar cotización
+              </a>
+              {/* Llamar — añadido por el encargo "Medición para Ads" (oct-2026,
+                  punto c). Los dos WhatsApp de arriba NO se tocaron. */}
+              <a
+                href={TEL_HREF}
+                className="block text-center text-xs tracking-[0.2em] uppercase text-beige hover:text-gold-strong transition-colors py-2"
+              >
+                O llámanos: 222 501 1994
               </a>
             </div>
           </div>

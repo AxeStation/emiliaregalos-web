@@ -4,6 +4,8 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import CartButton from '@/components/cart/CartButton'
+import { enlaceWhatsApp } from '@/lib/whatsapp'
+import { TEL_HREF } from '@/lib/types'
 
 var LOGO = 'https://llpejrdkipyysmxydsnm.supabase.co/storage/v1/object/public/products/emilia/emilia_logo_optimized.png'
 
@@ -35,7 +37,7 @@ export default function Navbar() {
             )
           })}
           <a
-            href="https://wa.me/522225011994"
+            href={enlaceWhatsApp('header')}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 bg-gold-strong text-white text-xs tracking-wider uppercase px-5 py-2.5 rounded-full hover:bg-gold transition-colors"
@@ -48,6 +50,14 @@ export default function Navbar() {
 
         {/* Mobile hamburger */}
         <div className="md:hidden absolute right-5 flex items-center gap-1">
+          {/* Llamar — visible en el header móvil sin abrir el menú (encargo
+              "Medición para Ads" oct-2026, punto c). El clic lo recoge el
+              listener delegado de src/components/ClickTracker.tsx. */}
+          <a href={TEL_HREF} aria-label="Llamar" className="w-9 h-9 flex items-center justify-center text-charcoal">
+            <svg viewBox="0 0 24 24" className="w-5 h-5 fill-none stroke-current stroke-[1.7]">
+              <path d="M6.5 3h3l1.5 4.5-2 1.5a12 12 0 006 6l1.5-2L21 14.5v3c0 1.1-.9 2-2 2C11.5 19.5 4.5 12.5 4.5 5c0-1.1.9-2 2-2z" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </a>
           <CartButton />
           <button
             onClick={function () { setOpen(!open) }}
@@ -77,7 +87,7 @@ export default function Navbar() {
             )
           })}
           <a
-            href="https://wa.me/522225011994"
+            href={enlaceWhatsApp('header')}
             target="_blank"
             rel="noopener noreferrer"
             className="block text-center bg-gold-strong text-white text-sm tracking-wider uppercase px-5 py-3 rounded-full"

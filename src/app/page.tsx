@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { type Product, sePublica, normalizaCategoria } from '@/lib/types'
 import ProductCard from '@/components/ProductCard'
+import { enlaceWhatsApp } from '@/lib/whatsapp'
 
 var LOGO_WHITE = 'https://llpejrdkipyysmxydsnm.supabase.co/storage/v1/object/public/products/emilia/emilia-logo-ivory.png'
 var WEB = 'https://llpejrdkipyysmxydsnm.supabase.co/storage/v1/object/public/products/emilia/web/'
@@ -65,7 +66,10 @@ export default async function HomePage() {
             <Link href="/catalogo" className="bg-white/10 backdrop-blur border border-white/30 text-white text-xs tracking-[0.2em] uppercase px-8 py-3.5 rounded-full hover:bg-white/20 transition-colors">
               Ver catálogo
             </Link>
-            <a href="https://wa.me/522225011994?text=Hola!%20Me%20interesa%20ver%20sus%20regalos%20personalizados." target="_blank" rel="noopener noreferrer"
+            {/* Texto CAMBIADO por este PR (propuesta — ver src/lib/whatsapp.ts,
+                contexto 'inicioHero'). Antes: "Me interesa ver sus regalos
+                personalizados." */}
+            <a href={enlaceWhatsApp('inicioHero')} target="_blank" rel="noopener noreferrer"
               className="bg-gold-strong text-white text-xs tracking-[0.2em] uppercase px-8 py-3.5 rounded-full hover:bg-gold transition-colors">
               Escríbenos
             </a>
@@ -149,7 +153,8 @@ export default async function HomePage() {
                 return <li key={item} className="flex items-center gap-3"><span className="text-gold-strong">✦</span> {item}</li>
               })}
             </ul>
-            <a href="https://wa.me/522225011994?text=Hola!%20Me%20interesa%20personalizar%20un%20regalo." target="_blank" rel="noopener noreferrer"
+            {/* Texto SIN CAMBIO — sólo centralizado (contexto 'inicioPersonaliza'). */}
+            <a href={enlaceWhatsApp('inicioPersonaliza')} target="_blank" rel="noopener noreferrer"
               className="inline-block bg-gold-strong text-white text-xs tracking-[0.2em] uppercase px-8 py-3.5 rounded-full hover:bg-gold transition-colors">
               Personalizar mi regalo
             </a>
@@ -165,7 +170,8 @@ export default async function HomePage() {
             Cotizamos pedidos de 10 a 500 piezas con tu logo y diseño personalizado.
           </p>
           <p className="text-xs text-beige mb-8">Cotizaciones de $3,000 a $150,000+</p>
-          <a href="https://wa.me/522225011994?text=Hola!%20Me%20interesa%20una%20cotización%20de%20regalos%20corporativos." target="_blank" rel="noopener noreferrer"
+          {/* Texto SIN CAMBIO — sólo centralizado (contexto 'inicioEmpresarial'). */}
+          <a href={enlaceWhatsApp('inicioEmpresarial')} target="_blank" rel="noopener noreferrer"
             className="inline-block bg-gold-strong text-white text-xs tracking-[0.2em] uppercase px-8 py-3.5 rounded-full hover:bg-gold transition-colors">
             Solicitar cotización
           </a>
