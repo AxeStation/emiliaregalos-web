@@ -14,6 +14,26 @@ Ver `src/lib/gtag.ts` y `src/lib/conversions.ts` para el porqué fail-closed.
 - `NEXT_PUBLIC_GADS_CONV_LLAMADA` — etiqueta de conversión para clics en
   enlaces `tel:`, mismo formato.
 
+## Código de referencia en WhatsApp (leads con origen)
+
+PR 2 pieza A del encargo "Leads con origen" (oct-2026). Ver
+`docs/leads-origen/DISENO.md` en el repo `synxia-brain` para el diseño
+completo (piezas A/B/D) y el contrato con el endpoint.
+
+- `NEXT_PUBLIC_LEADS_API_URL` — base del brain (**sin barra final**), ej.
+  `https://axe.synxia.com.mx`. Opcional y FAIL-CLOSED: **sin esta variable el
+  sitio se comporta exactamente como hoy** — ningún `preventDefault`, ningún
+  `fetch`, el clic en WhatsApp navega igual que siempre. Con ella puesta,
+  `src/components/ClickTracker.tsx` pide un código corto a
+  `POST {NEXT_PUBLIC_LEADS_API_URL}/leads/ref` (timeout 1.5s) y lo agrega al
+  final del texto prellenado: `"... (ref. EM-4K7Q)"`. Si el brain no
+  responde a tiempo o responde distinto de `201`, el enlace se abre sin
+  código — el clic nunca se bloquea.
+- Captura de atribución (`src/lib/leadsRef.ts`): al cargar cualquier página
+  se guardan `gclid`/`wbraid`/`gbraid`/`utm_*` de la URL en `sessionStorage`
+  (independiente de `NEXT_PUBLIC_LEADS_API_URL` — esto siempre corre, lo que
+  cambia con la variable es si se usa para pedir un código).
+
 ## Getting Started
 
 First, run the development server:
