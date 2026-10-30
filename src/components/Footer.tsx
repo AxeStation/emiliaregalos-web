@@ -69,8 +69,8 @@ export default function Footer() {
               <a href="https://www.facebook.com/profile.php?id=61567623254017" className="flex items-center gap-2 hover:text-gold transition-colors">
                 emilia.mx
               </a>
-              <a href="mailto:emilia.regalos.mx@gmail.com" className="flex items-center gap-2 hover:text-gold transition-colors">
-                emilia.regalos.mx@gmail.com
+              <a href="mailto:emiliaregalos.mx@gmail.com" className="flex items-center gap-2 hover:text-gold transition-colors">
+                emiliaregalos.mx@gmail.com
               </a>
               <p className="text-cream/30 pt-2">Puebla, México</p>
             </div>

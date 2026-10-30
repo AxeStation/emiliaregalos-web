@@ -45,7 +45,7 @@ test('un enlace interno de navegación NO es conversión', () => {
 })
 
 test('mailto: NO es conversión (no lo pidió el encargo)', () => {
-  assert.equal(contactKindFromHref('mailto:emilia.regalos.mx@gmail.com'), null)
+  assert.equal(contactKindFromHref('mailto:emiliaregalos.mx@gmail.com'), null)
 })
 
 test('un http(s) que no es wa.me/api.whatsapp.com NO es conversión', () => {
