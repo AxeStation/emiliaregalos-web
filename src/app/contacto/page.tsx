@@ -54,14 +54,14 @@ export default function ContactoPage() {
             </div>
           </a>
 
-          <a href="mailto:emilia.regalos.mx@gmail.com"
+          <a href="mailto:emiliaregalos.mx@gmail.com"
             className="flex items-center gap-4 bg-beige-light rounded-lg p-5 hover:bg-gold/10 transition-colors">
             <div className="w-12 h-12 bg-gold-strong rounded-full flex items-center justify-center shrink-0">
               <span className="text-white text-lg">@</span>
             </div>
             <div>
               <p className="font-medium text-sm">Correo electrónico</p>
-              <p className="text-xs text-charcoal">emilia.regalos.mx@gmail.com</p>
+              <p className="text-xs text-charcoal">emiliaregalos.mx@gmail.com</p>
             </div>
           </a>
         </div>
