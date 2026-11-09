@@ -44,6 +44,21 @@ const nextConfig = {
         destination: '/catalogo/caja-mini-padrinos',
         permanent: true,
       },
+
+      // Link corto emiliaregalos.mx/whatsapp → WhatsApp de Emilia con el texto
+      // exacto del auto-catálogo ("Hola, quiero el catálogo"). Ruta aprobada por
+      // Julu el 9-nov-2026. NO es /catalogo: esa es la página del catálogo del
+      // sitio y no se toca. Temporal (302) para poder cambiar el destino sin
+      // que navegadores/Google lo memoricen. OJO: `permanent: false` solo da
+      // 307 en Next 14; el `statusCode: 302` explícito es el que manda.
+      // /whatsapp/ con barra final llega aquí por el 308 de diagonal final que
+      // Next aplica a todo el sitio. Guardado por test/link-whatsapp.test.ts.
+      {
+        source: '/whatsapp',
+        destination: 'https://wa.me/522225011994?text=Hola%2C%20quiero%20el%20cat%C3%A1logo',
+        permanent: false,
+        statusCode: 302,
+      },
     ];
   },
 
